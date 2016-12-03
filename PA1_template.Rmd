@@ -4,7 +4,7 @@ author: "LB"
 date: "November 22, 2016"
 output: 
   html_document:
-    keepmd: TRUE
+    keepmd: true
 ---
 
 Peer-Assessment 1
