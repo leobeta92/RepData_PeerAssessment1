@@ -3,15 +3,13 @@ title: "Rep_Research_Assignment1"
 author: "LB"
 date: "November 22, 2016"
 output: 
-  github_document
+  html_document:
+    keepmd: TRUE
 ---
 
 Peer-Assessment 1
 ====================
 Reproducible Research
-
-
-## Loading and preprocessing the data
 
 Packages loaded for this project: dplyr, ggplot2, reshape2
 ```{r, echo=TRUE, results= 'hide'}
@@ -46,14 +44,12 @@ I have also included a figure showing how spread out it is by day.
 ```{r plot_data, echo= TRUE, fig.width= 10}
 ggplot(org.by.date, aes(Group.1, x)) + geom_bar(stat= 'identity') + xlab('Date') + ylab('No. of Steps') + ggtitle('Number of Steps Taken each Day')
 ```
-## What is mean total number of steps taken per day?
 
 ```{r mean.and.median, echo=TRUE}
 df <- data.frame(Property= c('Mean', 'Median'), Value= c(mean(as.numeric(org.by.date$x)), median(as.numeric(org.by.date$x))))
 print(df)
 ```
 
-## What is the average daily activity pattern?
 ```{r avg.across.intervals, echo=TRUE, fig.width=10}
 part.three <- aggregate(x= as.numeric(filterNA$steps), by= list(as.factor(filterNA$interval)), mean)
 plot(part.three$Group.1, part.three$x, type= 'l', main= 'Average Steps by Interval', ylab= 'Avg. No. of Steps', xlab= 'Interval')
@@ -65,7 +61,6 @@ We can use the which.max function to see which 5-minute interval has the highest
 part.three[which.max(part.three$x),]
 ```
 
-## Imputing missing values
 Let's see how many NA values are in this dataset using the dplyr function (since I read in the file with the na.strings setting to '', is.na was not appropriate here.)
 ``` {r, echo= TRUE}
 knr.na <- filter(knr, steps== 'NA')
@@ -103,7 +98,6 @@ print(df.two)
 
 From these figures, we see that the mean and median do not change much. Since we inserted the average values from the existing data on steps to the complete dataset, the average and median should have remained similar. Therefore, imputing the missing values did not bias our results.
 
-## Are there differences in activity patterns between weekdays and weekends?
 For the final part of the assignment, we will create a factor variable with two levels-- weekday and weekend.
 
 ```{r, echo= TRUE, fig.align='center'}
