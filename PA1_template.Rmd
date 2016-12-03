@@ -2,7 +2,9 @@
 title: "Rep_Research_Assignment1"
 author: "LB"
 date: "November 22, 2016"
-output: html_document
+output: 
+  html_document:
+    keepmd: TRUE
 ---
 
 Peer-Assessment 1
